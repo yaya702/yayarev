@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    //EXERCICE1:
+    //Q6
+   <form action="ENT.html" method="POST">
+    <label for="nom">nom:</label>
+    <input type="text" name="nom">
+    <br>
+    <label for="age">age:</label>
+    <input type="number" name="age">
+   </form> 
+   //Q8
+   <form action="ENT.html" method="post">
+    <label for="couleur">couleur:</label>
+   <select name="couleur">
+    <option value="rouge">rouge:</option>
+    <option value="vert">vert:</option>
+    <option value="bleu">bleu:</option>
+   </select>
+   <br>
+   <input type="submit" name="submit" value="valider">
+   </form>
+   //Q9
+   <form action="ENT.html" method="get">
+    <label for="nb1">nombre1:</label>
+    <input type="number" name="nb1">
+    <br>
+    <label for="nb2">nombre2:</label>
+    <input type="number" name="nb2">
+    <br>
+    <input type="submit" name="envoyer" value="valider">
+   </form> 
+   //Q10
+   <form action="ENT.html" method="post">
+    <label for="typeutilisateur">Type de compte:</label>
+   <select name="typeutilisateur">
+    <option value="administrateur">administrateur:</option>
+    <option value="utilisateur">utilisateur:</option>
+   </select>
+   <input type="submit" name="envoyer" value="envoyer">
+   </form>
+   //EXERCICE2:
+   //Q2
+   <form action="ENT.html" method="post">
+    <label for="nom">nom:</label>    
+    <input type="text" name="nom">
+    <br>
+    <input type="submit" name="submit">
+   </form>
+
+</body>
+</html>
+<?php
+    //EXERCICE1:
+    //Q1
+    $etudiant=array(
+        "nom"=>"ismael",
+        "prenom"=>"faida",
+        "matricule"=>"CC20-45"
+    );
+    //Q2
+    $etudiant["notes"]=16;
+    foreach($etudiant as $key=>$value)
+    {
+      echo"{$key}:{$value} <br>";  
+    }
+    //Q3
+    $produit=array(
+        "prod1"=>array("nom"=>"ps3","prix"=>300),
+        "prod2"=>array("nom"=>"ps4","prix"=>400),
+        "prod3"=>array("nom"=>"ps5","prix"=>500)
+    );0.
+    
+    foreach($produit as $key)
+    {
+       foreach($key as $cle=>$value)
+       {
+        echo"{$cle}:{value} <br>";
+       } 
+    }
+    //Q4
+    $scores=array(
+        "E1"=>11,
+        "E2"=>12,
+        "E3"=>13,
+        "E4"=>14,
+        "E5"=>15
+    );
+    $moy=0;
+    $nombre=count($scores);
+    foreach($scores as $key=>$value)
+    {
+      $moy+=$value;  
+    }
+    $moy=$moy/$nombre;
+echo "la moyenne des scores des etudiants est:{$moy}";
+//Q5
+$pays=array(
+    "Maroc"=>1000,
+    "France"=>4000,
+    "Belgique"=>2000,
+    "USA"=>3000
+);
+arsort($pays);
+foreach($pays as $key=>$value)
+{
+ echo"{$key}:{$value} <br>";
+}
+//Q6
+if(isset($_POST["submit"]))
+{
+ $nom=$_POST["nom"];
+ $age=$_POST["age"];   
+ echo "bienvenue,{$nom},vous avez{$age} ans!";
+}
+else{
+    echo "formulaire vide";
+}
+//Q8
+if(isset($_POST["submit"]))
+{
+ $couleur=$_POST["couleur"]; 
+ echo "votre couleur prefere est:{$couleur}";  
+}
+else{
+    echo "champ vide";
+}
+//Q9
+if(isset($_GET["envoyer"]))
+{
+ $nombre1=$_GET["nb1"];
+ $nombre2=$_GET["nb2"];
+ $somme=$nombre1+$nombre2;
+ echo "la somme des deux nombres est: {$somme}";   
+}
+else
+{
+  echo "champ invalide";  
+}
+//Q10
+if(isset($_POST["envoyer"]))
+{
+  $tcmpt=$_POST["typeutilisateur"];
+  echo "le type de votre comptre est: {$tcmpt}";  
+}
+else
+{
+  echo "champ invalide";  
+}
+//EXERCICE2:
+//Q1:
+$emp=array(
+  "emp1"=>array("nom"=>"ismael","poste"=>"PDG","salaire"=>100000),
+  "emp2"=>array("nom"=>"mehdi","poste"=>"directeur","salaire"=>200000),
+  "emp3"=>array("nom"=>"wassim","poste"=>"developpeur","salaire"=>300000),
+  "emp4"=>array("nom"=>"yassine","poste"=>"consultant","salaire"=>400000),
+  "emp5"=>array("nom"=>"walid","poste"=>"entrepreneur","salaire"=>500000)
+);
+$moy=0;
+$nombre=count($emp);
+foreach($emp as $key)
+{
+  $moy+=$key["salaire"];
+}
+$moy=$moy/$nombre;
+echo "la moyenne des salaires des employes est:{$moy}";
+//Q2
+if(isset($_POST["submit"]))
+{
+ $nom=$_POST["nom"];
+ $c=0;
+ foreach($emp as $key)
+ {
+  $salaire=$key["salaire"];
+  $poste=$key["poste"];
+   if($nom==$key["nom"]){echo "le nom de l'employe est,{$nom},son salaire est,{$salaire},son poste est,{$poste} <br>";$c+=1;} 
+ }
+ if($c==0){echo "nom introuvable";}
+}
+else{echo "nom invalide";}
